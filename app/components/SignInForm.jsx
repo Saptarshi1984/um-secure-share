@@ -9,10 +9,7 @@ const SignInForm = ({onClose, onSwitchToSignUp}) => {
 
 
     return (
-        <div className="w-md flex flex-col justify-center gap-4
-                        bg-gray-800 text-amber-600 text-2xl m-auto 
-                        border-2 border-amber-500 p-4
-                        rounded-4xl align-middle items-center shadow-2xl">
+        <div className= "w-md flex flex-col justify-center gap-4 bg-gray-800 text-amber-600 text-2xl m-auto border-2 border-amber-500 p-4 rounded-4xl align-middle items-center shadow-2xl">
             <h1 className="m-auto">Sign In</h1>
             <input className={inputStyle} type="text" placeholder="Email Id" required />
             <input className={inputStyle} type="password" placeholder="Password" required />
