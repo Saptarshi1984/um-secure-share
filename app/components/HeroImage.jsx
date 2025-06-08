@@ -9,7 +9,8 @@ const HeroImage = () => {
     const pStyle = 'w-40 text-lg  p-1 text-gray-300 align-center';
 
     return (
-
+        
+        
         <div className="w-6xl flex flex-row gap-8 justify-around items-center">
             <motion.div
             initial= {{opacity: 0, y: 40, scale: 0.95}}
@@ -41,6 +42,7 @@ const HeroImage = () => {
             <p className={pStyle}>Generate a secure link and share it instantly.</p>
             </motion.div>
         </div>
+        
     )
 }
 

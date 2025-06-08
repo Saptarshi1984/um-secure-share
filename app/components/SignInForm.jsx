@@ -1,5 +1,8 @@
 import {CircleX} from 'lucide-react';
 import React, { useState }  from "react";
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '@/firebase/firebase';
+import { Firestore, getDoc, doc } from 'firebase/firestore';
 
 
 const SignInForm = ({onClose, onSwitchToSignUp}) => {
