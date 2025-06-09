@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AlertMessage from "./AlertMessage";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/firebase/firebase";
 import { Firestore, setDoc, doc } from "firebase/firestore";
@@ -14,13 +15,15 @@ const SignUpForm = ({onClose, onSwitchToSignIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
       if(password !== confirmPassword) {
       
-       alert("Password did not match!");
+       
+       setAlertMsg("Password mismatch!");
        return;
      }      
 
@@ -34,25 +37,32 @@ const SignUpForm = ({onClose, onSwitchToSignIn}) => {
           email: user.email,
           createdAt: new Date()
          });
-         alert("User Created Successfully");
+
+         setAlertMsg("SignUp Successful.");
+         setEmail("");
+         setPassword("");
+         setConfirmPassword("");
       }
 
       catch (error) {
-        alert("User SignUp error:", error.message);
+        
+        setAlertMsg("SignUp error");
       }
   }
     
     return (
-
+             
+             
         <div className="w-md flex flex-col justify-center gap-4
                         bg-gray-800 text-amber-600 text-2xl m-auto 
                         border-2 border-amber-500 p-4 
                         rounded-4xl align-middle items-center shadow-2xl">
-            <h1 className="m-auto">Sign Up</h1> 
+            {alertMsg && <AlertMessage alertMsg={alertMsg} />} 
+            <h1 className="m-auto">Sign Up</h1>            
             <form onSubmit={onSubmit} className="flex flex-col gap-4">           
-            <input className={inputStyle} type="text" placeholder="Email Id" required onChange={(e) => setEmail(e.target.value)} />
-            <input className={inputStyle} type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)}/>
-            <input className={inputStyle} type="password" placeholder="Confirm password" required onChange={(e) => setConfirmPassword(e.target.value)} />
+            <input className={inputStyle} type="text" placeholder="Email Id" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className={inputStyle} type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input className={inputStyle} type="password" placeholder="Confirm password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
             <button type="submit" className="border-2 border-amber-500 p-2 w-50 cursor-pointer rounded-4xl m-auto hover:bg-amber-600 hover:text-black">SignUp</button>
             </form>
             <hr />

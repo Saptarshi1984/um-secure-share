@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import HeroImage from "./HeroImage";
 import SignInForm from "./SignInForm";
-import SignUpForm from "./SignUpForm"; // assuming you'll have this
+import SignUpForm from "./SignUpForm"; 
 import { motion } from "framer-motion";
 
-export default function HeroSec() {
+export default function HeroSec({setLoggedIn}) {
 
   const [activeForm, setActiveForm] = useState(null); // null | "signIn" | "signUp"
   const handleShowSignIn = () => setActiveForm("signIn");
@@ -49,7 +49,7 @@ export default function HeroSec() {
         animate={{opacity: 1, scale: 1, filter: "blur(0px)" }} 
         transition={{duration:0.4}}
         className= "absolute top-[150px] z-10">
-          <SignInForm onClose={handleCloseForm}  onSwitchToSignUp={handleShowSignUp} />
+        <SignInForm onClose={handleCloseForm}  onSwitchToSignUp={handleShowSignUp} setLoggedIn={setLoggedIn}  />
         </motion.div>
       )}
 
