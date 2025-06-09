@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import AlertMessage from "./AlertMessage";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/firebase/firebase";
-import { Firestore, setDoc, doc } from "firebase/firestore";
+import { Firestore,getDoc, setDoc, doc } from "firebase/firestore";
 import { CircleX } from 'lucide-react';
+import { signInWithGoogle } from "../utils/socilaAuth";
 
 
 
-const SignUpForm = ({onClose, onSwitchToSignIn}) => {
+const SignUpForm = ({onClose, onSwitchToSignIn, setLoggedIn}) => {
 
     const inputStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2";
     const buttonStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2 cursor-pointer hover:bg-amber-600 hover:text-black";
@@ -16,6 +17,39 @@ const SignUpForm = ({onClose, onSwitchToSignIn}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [alertMsg, setAlertMsg] = useState("");
+
+  /* Login with goolge function */
+      const handleGoogleLogin = async () => {
+  
+          try {
+  
+              const result = await signInWithGoogle();
+              const user = result.user;
+  
+              const userDocRef = doc(db, "users", user.uid);
+              const userDocSnap = await getDoc(userDocRef);
+  
+              if(!userDocSnap.exists()) {
+  
+              await setDoc(userDocRef, {
+                    name: user.displayName,
+                    uid: user.uid,
+                    email: user.email,
+                    createdAt: new Date()
+                  });
+              }
+              setLoggedIn(true);
+              onClose();
+          }
+  
+          catch (error) {
+  
+              setAlertMsg(`Google Sign In Failed!-${error.message}`);
+          }
+  
+      }
+
+
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +80,7 @@ const SignUpForm = ({onClose, onSwitchToSignIn}) => {
 
       catch (error) {
         
-        setAlertMsg("SignUp error");
+        setAlertMsg("SignUp error!");
       }
   }
     
@@ -66,7 +100,7 @@ const SignUpForm = ({onClose, onSwitchToSignIn}) => {
             <button type="submit" className="border-2 border-amber-500 p-2 w-50 cursor-pointer rounded-4xl m-auto hover:bg-amber-600 hover:text-black">SignUp</button>
             </form>
             <hr />
-            <button className= {buttonStyle}  type="button"><span>Sign Up with Google</span></button>
+            <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign Up with Google</span></button>
             <button className= {buttonStyle}  type="button"><span>Sign Up with Facebook</span></button>
             <button className= {buttonStyle}  type="button"><span>Sign Up with X</span></button>
            <p>

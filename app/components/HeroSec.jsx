@@ -59,7 +59,7 @@ export default function HeroSec({setLoggedIn}) {
         animate={{opacity: 1, scale: 1, filter: "blur(0px)" }} 
         transition={{duration:0.4}}
          className="absolute top-[150px] z-10">
-          <SignUpForm onClose={handleCloseForm} onSwitchToSignIn={handleShowSignIn} />
+          <SignUpForm onClose={handleCloseForm} onSwitchToSignIn={handleShowSignIn} setLoggedIn={setLoggedIn} />
         </motion.div>
       )}
     </div>

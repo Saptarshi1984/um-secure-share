@@ -2,11 +2,81 @@ import {CircleX} from 'lucide-react';
 import React, { useState }  from "react";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '@/firebase/firebase';
-import { Firestore, getDoc, doc } from 'firebase/firestore';
+import { Firestore, getDoc, setDoc, doc } from 'firebase/firestore';
 import AlertMessage from './AlertMessage';
+import { signInWithGoogle, 
+         signInWithFacebook, 
+         signInWithTwitter 
+        } from '../utils/socilaAuth';
+
 
 
 const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
+
+
+    /* Login with goolge function */
+    const handleGoogleLogin = async () => {
+
+        try {
+
+            const result = await signInWithGoogle();
+            const user = result.user;
+
+            const userDocRef = doc(db, "users", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if(!userDocSnap.exists()) {
+
+            await setDoc(userDocRef, {
+                  name: user.displayName,
+                  uid: user.uid,
+                  email: user.email,
+                  createdAt: new Date()
+                });
+            }
+            setLoggedIn(true);
+            onClose();
+        }
+
+        catch (error) {
+
+            setAlertMsg(`Google Sign In Failed!-${error.message}`);
+        }
+
+    }
+
+    /* Login With Facebook function */
+    const handleFacebookLogin = async () => {
+
+        try {
+
+            const result = signInWithFacebook();
+            const user = result.user;
+
+            const userDocRef = doc(db, "users", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if(!userDocSnap.exists()){
+
+                setDoc(userDocRef, {
+                    name: user.displayName,
+                    uid: user.uid,
+                    email: user.email,
+                    createdAt: new Date()
+                });
+
+                setLoggedIn(true)
+                onClose();
+            }
+        }
+
+        catch (error) {
+
+            setAlertMsg(`SignIn with facebook failed!-${error.message}`);
+
+        }
+
+    }
 
     const inputStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2";
     const buttonStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2 cursor-pointer hover:bg-amber-600 hover:text-black";
@@ -23,11 +93,11 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
     const user = userCredential.user;
 
     const userDocRef = doc(db, "users", user.uid);
-    const userDcoSnap = await getDoc(userDocRef);
+    const userDocSnap = await getDoc(userDocRef);
 
-    if(userDcoSnap.exists()) {
+    if(userDocSnap.exists()) {
 
-        const userData = userDcoSnap.data();
+        const userData = userDocSnap.data();
 
         setLoggedIn(true);
         setAlertMsg("SignIn Successful!");
@@ -57,8 +127,8 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
             </form>
             <p>Forgot Password? <a className="hover:underline" href="">Click here</a></p>
             <hr />
-            <button className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
-            <button className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
+            <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
+            <button onClick={handleFacebookLogin} className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
             <button className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
             <p>Not a Member? <a className="hover:underline hover:cursor-pointer"  onClick={onSwitchToSignUp}>SignUp</a></p>
             
