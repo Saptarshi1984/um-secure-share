@@ -4,7 +4,7 @@ import Dashboard from './Dashboard';
 import Upload from './Upload';
 import React, { useState } from 'react';
 
-const Navbar = ({loggedIn, setLoggedIn, setActivePage}) => {
+const Navbar = ({loggedIn, setLoggedIn,activePage, setActivePage}) => {
 
     const logoName = "SeS";
       
@@ -15,7 +15,7 @@ return (
         <Lock />
         <a className="text-3xl text-amber-500 font-mono font-bold" href="">{logoName}</a>
     </div>
-    {loggedIn && <Navlink setLoggedIn={setLoggedIn} setActivePage={setActivePage} />}
+    {loggedIn && <Navlink setLoggedIn={setLoggedIn} setActivePage={setActivePage} activePage={activePage} />}
     </div>
 )
 }

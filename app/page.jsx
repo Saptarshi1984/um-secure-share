@@ -32,7 +32,7 @@ export default function Home() {
   return (
 
     <div className="flex flex-col">
-      <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} setActivePage={setActivePage} />
+      <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn} setActivePage={setActivePage} activePage={activePage} />
       {!loggedIn && <HeroSec setLoggedIn={setLoggedIn} />}      
 
     {loggedIn && (
