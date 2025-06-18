@@ -73,6 +73,7 @@ const Dashboard = () => {
         <table className="table-auto w-full border-collapse border border-amber-500 text-amber-500">
           <thead>
             <tr>
+              <th className="border border-amber-500 p-2">Sl No.</th>
               <th className="border border-amber-500 p-2">File Name</th>
               <th className="border border-amber-500 p-2">Upload Date</th>
               <th className="border border-amber-500 p-2">File Size</th>
@@ -81,6 +82,7 @@ const Dashboard = () => {
           <tbody>
             {files.map((file, idx) => (
               <tr key={idx}>
+                <td className="border border-amber-500 p-2">{idx + 1}</td>
                 <td className="border border-amber-500 p-2">{file.name}</td>
                 <td className="border border-amber-500 p-2">
                   {file.createdAt?.toDate().toLocaleString() || '—'}

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { db, storage } from "@/firebase/firebase";
-import { deleteDoc, collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { deleteDoc, collection, addDoc, query, where, getDocs, serverTimestamp } from "firebase/firestore";
 import { ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 
@@ -10,11 +10,13 @@ const Upload = () => {
   const [fileList, setFileList] = useState([]);
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef(null);
+  
 
   const buttonStyle =
     "text-amber-500 border-2 border-amber-500 rounded-md px-4 py-2 font-semibold hover:bg-amber-500 hover:text-white transition";
 
   useEffect(() => {
+
     const fetchFiles = async () => {
       const { currentUser } = getAuth();
       if (!currentUser) return;
@@ -87,8 +89,6 @@ const Upload = () => {
     }
   };
 
-
-
   const handleDelete = async (url) => {
     const { currentUser } = getAuth();
     if (!currentUser) return;
@@ -108,6 +108,14 @@ const Upload = () => {
     }
   };
 
+  const handleCopyLink = (url) => {
+    navigator.clipboard.writeText(url);
+    alert("Link Copied.")
+    
+  }
+
+
+
   return (
     
     <div className="flex flex-col items-center justify-center w-[98%] mx-auto my-4">
@@ -115,6 +123,7 @@ const Upload = () => {
       <h1 className="my-4 text-amber-500 text-4xl font-extrabold font-mono">Uploads</h1>      
 
       <div
+        
         className={`w-[60%] h-100 border-2 border-dashed rounded-md flex flex-col items-center justify-center gap-10 transition-colors cursor-pointer ${
           dragActive ? 'bg-amber-600 border-amber-600' : 'border-amber-500 my-10'
         }`}
@@ -126,7 +135,7 @@ const Upload = () => {
         <p className="text-amber-100">
           {dragActive ? 'Drop files here...' : 'Drag & drop files here, or click to select'}
         </p>
-        <button type="button" className={`${buttonStyle} bg-transparent`} onClick={handleClick}>
+        <button type="button" className={`${buttonStyle} bg-transparent`} onClick={handleUpload}>
           Select Files
         </button>
         <input
@@ -143,6 +152,7 @@ const Upload = () => {
         <table className="table-auto w-full border-collapse border border-amber-500 text-amber-500">
           <thead>
             <tr>
+              <th className="border border-amber-500 p-2">Sl No.</th>
               <th className="border border-amber-500 p-2">File Name</th>
               <th className="border border-amber-500 p-2">File Size</th>
               <th className="border border-amber-500 p-2">Action</th>
@@ -151,33 +161,30 @@ const Upload = () => {
           <tbody>
             {fileList.map((file, idx) => (
               <tr key={idx}>
+                <td className="border border-amber-500 p-2">{idx + 1}</td>
                 <td className="border border-amber-500 p-2">{file.name}</td>
                 <td className="border border-amber-500 p-2">{file.size}</td>
                 <td className="border border-amber-500 p-2 flex flex-row gap-2 justify-around">
+
                   <button
                     onClick={() => handleDelete(file.url)}
                     className="text-red-500 hover:underline cursor-pointer"
                   >
                     Delete
                   </button>
+
                   <button
-                    
-                    className="text-emerald-400 hover:underline cursor-pointer"
-                  >
-                    View
-                  </button>
-                  <button
-                    
+                    onClick={() => handleCopyLink(file.url)}
                     className="text-white hover:underline cursor-pointer"
                   >
-                    Share
+                    Copy Link
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </div>      
     </div>
     
   );
