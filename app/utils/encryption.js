@@ -1,4 +1,4 @@
-// utils/encryption.js
+/* // utils/encryption.js
 
 export async function generateKey() {
   return crypto.subtle.generateKey(
@@ -36,3 +36,4 @@ export async function importKey(base64Key) {
     ["encrypt", "decrypt"]
   );
 }
+ */

@@ -1,4 +1,4 @@
-import { encryptFile, generateKey, exportKey } from "../utils/encryption";
+/* import { encryptFile, generateKey, exportKey } from "../utils/encryption";
 
 
 export async function encryptedUploadToCloudinary(file, uploadPreset, cloudName, userId) {
@@ -39,3 +39,4 @@ export async function encryptedUploadToCloudinary(file, uploadPreset, cloudName,
     iv: Array.from(iv),
   };
 }
+ */

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 const Navbar = ({loggedIn, setLoggedIn,activePage, setActivePage}) => {
 
-    const logoName = "SeS";
+    const logoName = "SES";
       
    
 return (

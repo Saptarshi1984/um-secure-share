@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Secure & Share Government Documents with Family Members
 
-First, run the development server:
+## 📝 Project Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This project offers a secure and user-friendly platform for Indian citizens to store, manage, and share essential government-issued documents (like PAN cards, mark sheets, passports) in digital format. It significantly reduces the risk of document loss by linking each account with the user's Aadhaar number and facilitates seamless online sharing, promoting the transition towards a paperless society.
+
+## 🎯 Project Objectives
+
+* Digitize and securely store government documents.
+* Enable verified document sharing among family members.
+* Ensure Aadhaar-based authentication and document linkage.
+* Reduce physical dependency and related government overheads.
+* Provide universal access across key sectors (education, healthcare, transport, etc.).
+
+## 💻 Tech Stack
+
+* **Frontend:** HTML, CSS, JavaScript
+* **Backend & Database:** Firebase (Authentication, Firestore, Cloud Storage)
+* **Utilities:** JavaScript Logging Library
+
+## 🚀 Features
+
+* **User Registration & OTP Verification**
+* **Secure Login & Authentication**
+* **Upload, Update, Delete Documents**
+* **Share Documents with Verified Users**
+* **Profile Management**
+* **Real-time Logging of User Actions**
+* **Modular, Maintainable, and Testable Code Structure**
+
+## 📊 Project Evaluation Metrics
+
+* **Code Quality:** Modular, maintainable, testable, portable
+* **Database Design:** Efficient use of Firebase Firestore & Storage
+* **Logging:** Every action logged using JavaScript logging utilities
+* **Deployment:** Firebase Hosting or other cloud platform
+* **Optimization:** Code and architecture level improvements documented
+
+## 🔄 Basic Workflow
+
+1. **Register**: Create an account with Aadhaar-based OTP verification.
+2. **Login**: Access secured dashboard after authentication.
+3. **Upload Document**: Upload and categorize government documents.
+4. **Manage Documents**: Update or delete stored files.
+5. **Share Documents**: Grant view access to family members.
+6. **Monitor Logs**: Admin/user can view logs of all actions.
+
+## 📁 Repository Structure
+
+```
+/public
+  └── index.html
+  └── style.css
+  └── script.js
+/functions
+  └── firebaseFunctions.js
+/logs
+  └── logger.js
+README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Testing
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* Manual testing across all features
+* Test cases written for:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+  * Login/logout
+  * Document upload/delete
+  * Sharing feature
+  * Error handling
 
-## Learn More
+## ☁️ Deployment
 
-To learn more about Next.js, take a look at the following resources:
+* Hosted on Firebase Hosting
+* Scalable for edge/local/cloud deployment depending on future use cases
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📈 Optimization Strategies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Lazy loading for documents
+* Indexed Firestore queries
+* Modularized functions for better reusability and debugging
 
-## Deploy on Vercel
+## 📌 Submission Guidelines
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Maintain public GitHub repository
+* Include README, code, logging utilities, and deployment details
+* Provide a detailed report as per the submission format
+* Share GitHub repo link at final submission
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+

@@ -1,4 +1,4 @@
-// app/api/deleteFile/route.js
+/* // app/api/deleteFile/route.js
 
 import { v2 as cloudinary } from 'cloudinary';
 
@@ -27,3 +27,4 @@ export async function POST(req) {
     });
   }
 }
+ */
