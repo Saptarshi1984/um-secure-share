@@ -6,7 +6,7 @@ import { Firestore, getDoc, setDoc, doc } from 'firebase/firestore';
 import AlertMessage from './AlertMessage';
 import { signInWithGoogle, 
          signInWithFacebook, 
-         signInWithTwitter 
+         signInWithTwitter, 
         } from '../utils/socilaAuth';
 
 
@@ -78,6 +78,37 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
 
     }
 
+    const handletwitterLogin = async () => {
+
+        try {
+
+            const result = await new signInWithTwitter();
+            const user = result.user;
+
+            const userDocRef = doc(db, "users", user.uid);
+            const userDocSnap = await getDoc(userDocRef);
+
+            if(!userDocSnap.exists()) {
+
+            await setDoc(userDocRef, {
+                  name: user.displayName,
+                  uid: user.uid,
+                  email: user.email,
+                  createdAt: new Date()
+                });
+            }
+            setLoggedIn(true);
+            onClose();
+        }
+
+        catch (error) {
+
+            setAlertMsg(`Twitter Sign In Failed!-${error.message}`);
+        }
+       
+
+    }
+
     const inputStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2";
     const buttonStyle = "w-sm border-amber-500 border-2 rounded-4xl p-2 cursor-pointer hover:bg-amber-600 hover:text-black";
     
@@ -129,7 +160,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
             <hr />
             <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
             <button onClick={handleFacebookLogin} className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
-            <button className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
+            <button onCanPlay={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
             <p>Not a Member? <a className="hover:underline hover:cursor-pointer"  onClick={onSwitchToSignUp}>SignUp</a></p>
             
             <CircleX className='absolute top-4 right-4 hover:cursor-pointer hover:text-amber-400' onClick={onClose}/>
