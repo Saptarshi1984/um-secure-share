@@ -27,7 +27,7 @@ const HeroImage = () => {
             animate= {{opacity: 1, y: 0, scale: 1}}
             transition={{duration: 3}}
             className= {imgDiv}>
-            <img className={imgStyle} src="/img/encrypt.png" alt="encryptImg" />
+            <img className={imgStyle} src="/img/encrypt.PNG" alt="encryptImg" />
             <h1 className={h1Style}>Encrypt & Secure</h1>
             <p className={pStyle}>Your file is protected with encryption.</p>
             </motion.div>
