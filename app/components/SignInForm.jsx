@@ -160,7 +160,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
             <hr />
             <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
             <button onClick={handleFacebookLogin} className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
-            <button onCanPlay={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
+            <button onClick={handletwitterLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
             <p>Not a Member? <a className="hover:underline hover:cursor-pointer"  onClick={onSwitchToSignUp}>SignUp</a></p>
             
             <CircleX className='absolute top-4 right-4 hover:cursor-pointer hover:text-amber-400' onClick={onClose}/>
