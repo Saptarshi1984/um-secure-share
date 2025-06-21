@@ -50,7 +50,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
 
         try {
 
-            const result = signInWithFacebook();
+            const result = await signInWithFacebook();
             const user = result.user;
 
             const userDocRef = doc(db, "users", user.uid);
@@ -78,11 +78,11 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
 
     }
 
-    const handletwitterLogin = async () => {
+    const handleTwitterLogin = async () => {
 
         try {
 
-            const result = await new signInWithTwitter();
+            const result = await signInWithTwitter();
             const user = result.user;
 
             const userDocRef = doc(db, "users", user.uid);
@@ -160,7 +160,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
             <hr />
             <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
             <button onClick={handleFacebookLogin} className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
-            <button onClick={handletwitterLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
+            <button onClick={handleTwitterLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
             <p>Not a Member? <a className="hover:underline hover:cursor-pointer"  onClick={onSwitchToSignUp}>SignUp</a></p>
             
             <CircleX className='absolute top-4 right-4 hover:cursor-pointer hover:text-amber-400' onClick={onClose}/>
