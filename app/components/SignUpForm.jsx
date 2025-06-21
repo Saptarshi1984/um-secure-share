@@ -4,9 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/firebase/firebase";
 import { Firestore,getDoc, setDoc, doc } from "firebase/firestore";
 import { CircleX } from 'lucide-react';
-import { signInWithGoogle } from "../utils/socilaAuth";
-
-
+import { signInWithGoogle, signInWithGithub, signInWithTwitter } from "../utils/socilaAuth";
 
 const SignUpForm = ({onClose, onSwitchToSignIn, setLoggedIn}) => {
 
@@ -48,6 +46,69 @@ const SignUpForm = ({onClose, onSwitchToSignIn, setLoggedIn}) => {
           }
   
       }
+
+      const handleGithubLogin = async () => {
+      
+              try {
+      
+                  const result = await signInWithGithub();
+                  const user = result.user;
+      
+                  const userDocRef = doc(db, "users", user.uid);
+                  const userDocSnap = await getDoc(userDocRef);
+      
+                  if(!userDocSnap.exists()){
+      
+                      setDoc(userDocRef, {
+                          name: user.displayName,
+                          uid: user.uid,
+                          email: user.email,
+                          createdAt: new Date()
+                      });
+      
+                      setLoggedIn(true)
+                      onClose();
+                  }
+              }
+      
+              catch (error) {
+      
+                  setAlertMsg(`SignIn with facebook failed!-${error.message}`);
+      
+              }
+      
+          }
+
+          const handleTwitterLogin = async () => {
+          
+                  try {
+          
+                      const result = await signInWithTwitter();
+                      const user = result.user;
+          
+                      const userDocRef = doc(db, "users", user.uid);
+                      const userDocSnap = await getDoc(userDocRef);
+          
+                      if(!userDocSnap.exists()) {
+          
+                      await setDoc(userDocRef, {
+                            name: user.displayName,
+                            uid: user.uid,
+                            email: user.email,
+                            createdAt: new Date()
+                          });
+                      }
+                      setLoggedIn(true);
+                      onClose();
+                  }
+          
+                  catch (error) {
+          
+                      setAlertMsg(`Twitter Sign In Failed!-${error.message}`);
+                  }
+                 
+          
+              }
 
 
 
@@ -101,8 +162,8 @@ const SignUpForm = ({onClose, onSwitchToSignIn, setLoggedIn}) => {
             </form>
             <hr />
             <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign Up with Google</span></button>
-            <button className= {buttonStyle}  type="button"><span>Sign Up with Facebook</span></button>
-            <button className= {buttonStyle}  type="button"><span>Sign Up with X</span></button>
+            <button onClick={handleGithubLogin} className= {buttonStyle}  type="button"><span>Sign Up with GitHub</span></button>
+            <button onClick={handleTwitterLogin} className= {buttonStyle}  type="button"><span>Sign Up with X</span></button>
            <p>
   Already Registered?{" "}
   <a className="hover:underline cursor-pointer" onClick={onSwitchToSignIn}>

@@ -45,7 +45,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
 
     }
 
-    /* Login With Facebook function */
+    /* Login With Github function */
     const handleGithubLogin = async () => {
 
         try {
