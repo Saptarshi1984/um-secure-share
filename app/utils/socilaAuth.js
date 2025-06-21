@@ -1,8 +1,8 @@
 import { auth } from "@/firebase/firebase";
 import { 
-         GoogleAuthProvider, 
-         FacebookAuthProvider, 
+         GoogleAuthProvider,  
          TwitterAuthProvider,
+         GithubAuthProvider,
          signInWithPopup 
         } from "firebase/auth";
 
@@ -12,8 +12,8 @@ import {
     return await signInWithPopup(auth, provider);
 };
 
-export const signInWithFacebook = async () => {
-    const provider = new FacebookAuthProvider();
+export const signInWithGithub = async () => {
+    const provider = new GithubAuthProvider();
 
     return await signInWithPopup(auth, provider);
 };

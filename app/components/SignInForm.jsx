@@ -5,7 +5,7 @@ import { auth, db } from '@/firebase/firebase';
 import { Firestore, getDoc, setDoc, doc } from 'firebase/firestore';
 import AlertMessage from './AlertMessage';
 import { signInWithGoogle, 
-         signInWithFacebook, 
+         signInWithGithub, 
          signInWithTwitter, 
         } from '../utils/socilaAuth';
 
@@ -46,11 +46,11 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
     }
 
     /* Login With Facebook function */
-    const handleFacebookLogin = async () => {
+    const handleGithubLogin = async () => {
 
         try {
 
-            const result = await signInWithFacebook();
+            const result = await signInWithGithub();
             const user = result.user;
 
             const userDocRef = doc(db, "users", user.uid);
@@ -159,7 +159,7 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
             <p>Forgot Password? <a className="hover:underline" href="">Click here</a></p>
             <hr />
             <button onClick={handleGoogleLogin} className= {buttonStyle}  type="button"><span>Sign In with Google</span></button>
-            <button onClick={handleFacebookLogin} className= {buttonStyle}  type="button"><span>Sign In with Facebook</span></button>
+            <button onClick={handleGithubLogin} className= {buttonStyle}  type="button"><span>Sign In with GitHub</span></button>
             <button onClick={handleTwitterLogin} className= {buttonStyle}  type="button"><span>Sign In with X</span></button>
             <p>Not a Member? <a className="hover:underline hover:cursor-pointer"  onClick={onSwitchToSignUp}>SignUp</a></p>
             
