@@ -77,7 +77,8 @@ const SignInForm = ({onClose, onSwitchToSignUp, setLoggedIn}) => {
         }
 
     }
-
+    
+     /* Login With X function */
     const handleTwitterLogin = async () => {
 
         try {

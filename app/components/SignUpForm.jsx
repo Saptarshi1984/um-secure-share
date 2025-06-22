@@ -73,7 +73,7 @@ const SignUpForm = ({onClose, onSwitchToSignIn, setLoggedIn}) => {
       
               catch (error) {
       
-                  setAlertMsg(`SignIn with facebook failed!-${error.message}`);
+                  setAlertMsg(`SignIn with GitHub failed!-${error.message}`);
       
               }
       

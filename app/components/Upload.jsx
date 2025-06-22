@@ -110,10 +110,9 @@ const Upload = () => {
 
   const handleCopyLink = (url) => {
     navigator.clipboard.writeText(url);
-    alert("Link Copied.")
+    alert("Link Copied.");
     
   }
-
 
 
   return (
