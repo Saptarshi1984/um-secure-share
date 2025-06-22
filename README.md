@@ -5,6 +5,11 @@
 
 This project offers a secure and user-friendly platform for Indian citizens to store, manage, and share essential government-issued documents (like PAN cards, mark sheets, passports) in digital format. It significantly reduces the risk of document loss by linking each account with the user's Aadhaar number and facilitates seamless online sharing, promoting the transition towards a paperless society.
 
+👉 [Visit Homepage](https://um-secure-share.vercel.app/)
+
+👉 [Project Documentaion Link](https://drive.google.com/file/d/1Su9I3mnl5tInktZMgxFze3Fqv9v9NJCi/view?usp=drive_link) 
+
+
 ## 🎯 Project Objectives
 
 * Digitize and securely store government documents.
@@ -15,13 +20,12 @@ This project offers a secure and user-friendly platform for Indian citizens to s
 
 ## 💻 Tech Stack
 
-* **Frontend:** HTML, CSS, JavaScript
+* **Frontend:** HTML, TailwindCSS, JavaScript
 * **Backend & Database:** Firebase (Authentication, Firestore, Cloud Storage)
-* **Utilities:** JavaScript Logging Library
 
 ## 🚀 Features
 
-* **User Registration & OTP Verification**
+* **User Registration**
 * **Secure Login & Authentication**
 * **Upload, Update, Delete Documents**
 * **Share Documents with Verified Users**
@@ -33,32 +37,19 @@ This project offers a secure and user-friendly platform for Indian citizens to s
 
 * **Code Quality:** Modular, maintainable, testable, portable
 * **Database Design:** Efficient use of Firebase Firestore & Storage
-* **Logging:** Every action logged using JavaScript logging utilities
-* **Deployment:** Firebase Hosting or other cloud platform
+* **Deployment:** Vercel Hosting
 * **Optimization:** Code and architecture level improvements documented
 
 ## 🔄 Basic Workflow
 
 1. **Register**: Create an account with Aadhaar-based OTP verification.
 2. **Login**: Access secured dashboard after authentication.
+3. **Profile Management**: User can update proile after registration.
 3. **Upload Document**: Upload and categorize government documents.
 4. **Manage Documents**: Update or delete stored files.
 5. **Share Documents**: Grant view access to family members.
 6. **Monitor Logs**: Admin/user can view logs of all actions.
 
-## 📁 Repository Structure
-
-```
-/public
-  └── index.html
-  └── style.css
-  └── script.js
-/functions
-  └── firebaseFunctions.js
-/logs
-  └── logger.js
-README.md
-```
 
 ## 🧪 Testing
 
@@ -72,21 +63,12 @@ README.md
 
 ## ☁️ Deployment
 
-* Hosted on Firebase Hosting
-* Scalable for edge/local/cloud deployment depending on future use cases
+* Hosted on Vercel Hosting
 
 ## 📈 Optimization Strategies
 
-* Lazy loading for documents
 * Indexed Firestore queries
 * Modularized functions for better reusability and debugging
-
-## 📌 Submission Guidelines
-
-* Maintain public GitHub repository
-* Include README, code, logging utilities, and deployment details
-* Provide a detailed report as per the submission format
-* Share GitHub repo link at final submission
 
 ---
 
