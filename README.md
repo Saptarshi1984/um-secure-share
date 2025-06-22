@@ -7,7 +7,7 @@ This project offers a secure and user-friendly platform for Indian citizens to s
 
 👉 [Visit Homepage](https://um-secure-share.vercel.app/)
 
-👉 [Project Documentaion Link](https://drive.google.com/file/d/1Su9I3mnl5tInktZMgxFze3Fqv9v9NJCi/view?usp=drive_link) 
+👉 [Project Documentaion Link](https://drive.google.com/file/d/1HW8Pmt3YRa-dd5thE-lhDGhAH2ttT7CO/view?usp=drive_link) 
 
 
 ## 🎯 Project Objectives
@@ -21,7 +21,7 @@ This project offers a secure and user-friendly platform for Indian citizens to s
 ## 💻 Tech Stack
 
 * **Frontend:** HTML, TailwindCSS, JavaScript
-* **Backend & Database:** Firebase (Authentication, Firestore, Cloud Storage)
+* **Backend & Database:**NextJS framework & Firebase (Authentication, Firestore, Cloud Storage)
 
 ## 🚀 Features
 
